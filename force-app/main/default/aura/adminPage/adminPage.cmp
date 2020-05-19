@@ -1,0 +1,181 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,lightning:isUrlAddressable,force:hasRecordId" access="global" controller="AdminPageClass">
+	
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <aura:attribute name="columns" type="List" default="[[{value : 'Office 1', color : 'color_white'}, {value : 90.0, color : 'color_SkyBlue'}, 
+                                                        {value : 55.0, color : 'color_PeachPuff'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 10.00, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 100.00, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 110.00, color : 'color_DarkGray'}],
+                                                         [{value : 'Office 2', color : 'color_white'}, {value : -267.00, color : 'color_SkyBlue'}, 
+                                                        {value : 267.00, color : 'color_PeachPuff'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 267.00, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 267.00, color : 'color_DarkGray'}],
+                                                         [{value : 'Office 3', color : 'color_white'}, {value : 195.00, color : 'color_SkyBlue'}, 
+                                                        {value : 77.50, color : 'color_PeachPuff'}, {value : 55.00 , color : 'color_White'}, 
+                                                        {value : 100.00, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 0, color : 'color_White'}, 
+                                                        {value : 0, color : 'color_Moccasin'}, {value : 155.00, color : 'color_DarkGray'}]]"/>
+    <aura:attribute name="kastbIl" type="List" default="[{value : '&nbsp;', color : 'color_Moccasin'},{value : '&nbsp;', color : 'color_Moccasin'}]"/>
+    <aura:attribute name="Empiduser" type="String" default=""/>
+    <aura:attribute name="Admin" type="Boolean"/>
+    
+	<div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+    	<div class="slds-col slds-size_8-of-12">  
+            <lightning:card title="Admin Page">
+                  
+                	<lightning:layout verticalAlign="stretch">
+                        <lightning:layoutItem size="4">
+                            <lightning:layout>
+                                <lightning:layoutItem  flexibility="auto">
+                                    <div class="month">
+                                    	Regional Expenses 2019
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem flexibility="auto">
+                                    <div class="color_Silver">
+                                    	Month 
+                                        <br/>
+                                        &nbsp;
+
+                                    </div>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem flexibility="auto">
+                                    <lightning:layout>
+                                        <lightning:layoutItem flexibility="auto" >
+                                            <div class="color_SkyBlue">
+                                            	Balance now:
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                    <lightning:layout>
+                                        <lightning:layoutItem flexibility="auto" >
+                                            <div class="color_PeachPuff">
+                                            	Monthly average
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_White">
+                                    	January
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="month">
+                                    	February
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_White">
+                                   		March
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="month">
+                                    	April
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_White">
+                                    	May
+                                    </div>
+                                </lightning:layoutItem >
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="month">
+                                    	June
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_White">
+                                    	July
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="month">
+                                    	August
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_White">
+                                    	September
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="month">
+                                    	October
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_White">
+                                    	November
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="month">
+                                    	December
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <lightning:layout>
+                                <lightning:layoutItem size="12">
+                                    <div class="color_DarkGray">
+                                    	Total:
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </lightning:layoutItem>
+                        <aura:iteration items="{!v.columns}" var="column">
+                           
+                            <lightning:layoutItem>
+                                <lightning:layout multipleRows="true">
+                                    <aura:iteration items="{!column}" var="cell">
+                                        <lightning:layoutItem size="12">
+                                            <div class="{!cell.color}">{!cell.value}</div>
+                                        </lightning:layoutItem>
+                                    </aura:iteration>
+                                </lightning:layout>
+                            </lightning:layoutItem>
+                        </aura:iteration>
+        			</lightning:layout>
+            </lightning:card>
+        </div>
+    </div>
+</aura:component>

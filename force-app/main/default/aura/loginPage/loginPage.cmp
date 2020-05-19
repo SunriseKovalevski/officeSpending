@@ -1,0 +1,35 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LoginPageClass">
+    
+    <lightning:navigation aura:id="navService"/>
+    
+    
+    <aura:attribute name = "Empiduser" type = "String"/>
+    <aura:attribute name = "Empidpwd" type = "String"/>
+    <aura:attribute name = "pageReference" type="Object"/>
+    <aura:attribute name = "url" type="String"/>
+    <aura:attribute name = "admin" type ="Boolean"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+        <div class="slds-col slds-size_6-of-12">
+            <form>
+            	<div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                    <span>Login Page</span>
+                </div>
+                <div class ="slds-from-element__control">
+                    <lightning:input label="User Name" name="abc" id = "username"
+                                     placeholder="User Name" value="{!v.Empiduser}"/>
+                </div>
+                <div class ="slds-form-element__control">
+                    <lightning:input ladel="Password" type="password" name="abc" id="password" 
+                                     placeholder="Password" value="{!v.Empidpwd}"/>
+                </div>
+                <div class ="slds-align_absolute-center" style="height:4rem">
+                    <lightning:button variant="success" label="Login" onclick="{!c.loginPage}"/>                    
+                </div>
+            </form>
+        </div>
+    </div>                        
+</aura:component>

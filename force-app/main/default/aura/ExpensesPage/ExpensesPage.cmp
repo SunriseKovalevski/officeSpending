@@ -1,0 +1,175 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" access="global" controller="ExpensePageClass">
+    
+	<lightning:navigation aura:id="navService"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+    
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="rawData" type="Object" access="PRIVATE"/>
+    <aura:attribute name="activeFilter" type="String" default="all" access="PRIVATE"/>
+    <aura:attribute name="items" type="Object" access="PRIVATE"/>
+    <aura:attribute name="gridColumns" type="List" access="PRIVATE" />
+    <aura:attribute name="gridData" type="Object" access="PRIVATE" />
+    <aura:attribute name="gridExpandedRows" type="List" access="PRIVATE" />
+    <aura:attribute name="activeSections" type="List" default="[]" />
+    <aura:attribute name="activeSectionsMessage" type="String" default="" />
+    <aura:attribute name="totalAmount" type="currency" default="1234.30" />
+    <aura:attribute name="Empiduser" type="String"/>
+    <aura:attribute name="cardList" type="List"  default="[]"/>
+    <aura:attribute name="dataNav" type="List" default="[{'3'},{'10'}]"/>
+    <aura:attribute name="monthsNavigation" type="Object" />
+    <aura:attribute name="navigationSelecteditem" type="String"/>
+    <aura:attribute name="navigationActiveItem" type="String"/>
+    <aura:attribute name="totalAmountPerMonth" type="List"/>
+
+	<div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+        <div class="slds-col slds-size_8-of-12">  
+                <lightning:card title="Balance: $195.00">
+                    <aura:set attribute="actions">
+                        <lightning:button label="Income"/>
+                        <lightning:button label="New Expense" onclick="{!c.handleCreateCard}"/>
+                    </aura:set>
+                    <lightning:layout>
+                        
+                    	<lightning:layoutItem padding="around-small" size="4">
+          
+                    		<div style="height:600px">
+
+                                
+<nav class="slds-nav-vertical" aria-label="Sub page">
+    <div class="slds-nav-vertical__section">
+      <h2 id="entity-header" class="slds-nav-vertical__title">
+          <lightning:layout horizontalAlign="spread">
+              <lightning:layoutItem>
+                  <p style="width:70px;">Reports</p>
+              </lightning:layoutItem>
+              <lightning:layoutItem>
+                  Amount
+              </lightning:layoutItem>
+              <lightning:layoutItem>
+                  Income
+              </lightning:layoutItem>
+          </lightning:layout>
+      </h2>
+      <ul aria-describedby="entity-header" onclick="{!c.handleBeforeSelect}">
+          <aura:iteration items="{!v.monthsNavigation}" var="month" indexVar="indx" >
+              
+        <li class="slds-nav-vertical__item slds-grid slds-gutters" data-id="{!indx}">
+          <a  href="javascript:void(0);" class="slds-nav-vertical__action" aria-current="true" data-id="{!indx}" >
+ 
+      <div class="slds-col " data-id="{!indx}" >
+             <p style="width:60px;" data-id="{!indx}">{!month.month}</p> 
+     </div>
+               
+                    <div class="slds-col" data-id="{!indx}">
+           <span class="slds-badge"  data-id="{!indx}">
+              <span class="slds-assistive-text">:</span>{!month.amount}
+
+                        </span>
+              </div>
+          
+             
+  
+               <div class="slds-col_bump-left" data-id="{!indx}">
+            <span class="slds-badge"  data-id="{!indx}">
+              <span class="slds-assistive-text">:</span>3
+           
+            </span>
+                    </div>
+             
+
+           
+                        </a>
+         
+        </li>
+              
+          </aura:iteration>
+      </ul>
+        
+    </div>
+    
+                                </nav>     
+                                <div class="c-container">
+                                    <p style = "background-color: lightgrey;">
+        <lightning:layout horizontalAlign="space">
+            
+            <lightning:layoutItem padding="around-none">
+        		Total
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-none">
+        		Total
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-none">
+        		Total
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+                                    </p>
+        </div>
+                                 <div padding="around-small">
+                                <p padding="around-small">Years</p>
+                                <lightning:buttonGroup >
+                                    <lightning:button label="2017"/>
+                                    <lightning:button label="2018"/>
+                                    <lightning:button label="2019"/>
+                                    <lightning:button label="2020"/>
+                                </lightning:buttonGroup>
+                               
+                            </div>
+                    		</div>
+                            
+                           
+                    	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="8">
+                        <lightning:accordion
+                        	allowMultipleSectionsOpen="true"
+                            onsectiontoggle="{!c.handleSectionToggle}"
+							activeSectionName="{!v.activeSections}"                                             
+                        >
+                            <aura:iteration items="{!v.cardList}" var="cards" indexVar="i">
+                               
+       
+           
+                            <lightning:accordionSection aura:id="accordionSection" name="A" label="{!cards.label}" >
+                                <aura:set attribute="actions">
+                                    <lightning:buttonMenu aura:id="menu" alternativeText="Show menu" menuAlignment="right" iconSize="x-small">
+                                        <lightning:menuItem value="New" label="Menu Item One"/>
+                                        <lightning:menuitem value="Edit" label="Menu item Two"/>
+                                    </lightning:buttonMenu>
+                                </aura:set>
+                                <aura:set attribute="body" >                  
+                                            <lightning:treeGrid  
+                                                data-id = "{!cards.label}"
+                                                columns="{!v.gridColumns}"
+                                                data="{!cards.data }"
+                                                expandedRows="{! v.gridExpandedRows }"
+                                                keyField="description"
+                                                hideCheckboxColumn="true"
+												onrowaction="{!c.handleRowAction}"
+											/>
+                                              <lightning:layout>
+                                                  <lightning:layoutItem padding="around-small" size="7">
+                                                  total:
+                                                  </lightning:layoutItem>
+                                                  <lightning:layoutItem padding="around-small" size="5">
+                                                      <p><lightning:formattedNumber value="{!cards.totalAmount}" style="currency" currencyCode="USD" currencyDisplayAs="symbol"/></p>
+                                                  </lightning:layoutItem>
+                                              </lightning:layout>
+                                                                       
+                                </aura:set>
+                            </lightning:accordionSection>
+                        
+                            </aura:iteration>
+                            
+                        </lightning:accordion>
+                            
+                            
+                             
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </lightning:card>
+        </div>
+    </div>
+</aura:component>

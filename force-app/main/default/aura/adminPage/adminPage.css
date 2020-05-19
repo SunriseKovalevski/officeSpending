@@ -1,0 +1,51 @@
+.THIS .color_white {
+    border: 1px solid #d8dde6;
+    padding: 5px;
+}
+
+.THIS .color_Moccasin {
+    border: 1px solid #d8dde6;
+    padding: 5px;
+    background-color: Moccasin;
+}
+
+.THIS .color_White {
+    border: 1px solid #d8dde6;
+    padding: 5px;
+    background-color: White;
+}
+
+.THIS .color_DarkGray {
+    border: 1px solid #d8dde6;
+    padding: 5px;
+    background-color: DarkGray;
+}
+
+.THIS .color_Silver {
+    border: 1px solid #d8dde6;
+    padding: 5px;
+    background-color: Silver;
+    line-height: 1.9;
+}
+
+.THIS .color_SkyBlue {
+    border: 1px solid #d8dde6;
+    padding: 5px;
+    background-color: SkyBlue;
+}
+
+.THIS .color_PeachPuff {
+    border: 1px solid #d8dde6;
+    padding: 5px; 
+    background-color: PeachPuff;
+}
+
+.THIS .month {
+	border: 1px solid #d8dde6;
+    padding: 5px;    
+}
+
+
+.THIS .month_grey {
+    padding: 5px;    
+}

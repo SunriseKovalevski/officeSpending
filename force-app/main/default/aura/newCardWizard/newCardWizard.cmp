@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" access="global"  controller="NewCardWizardClass">
+    
+    <lightning:navigation aura:id="navService"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    <aura:attribute name="amountValue" type="String"/>
+    <aura:attribute name="descriptionValue" type="String"/>
+    <aura:attribute name="tdateValue" type="String"/>
+    <aura:attribute name="empiduser" type="String"/>
+    
+<div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+    <div class="slds-col slds-size_8-of-12">  
+        <lightning:card title="New Expense Card">
+    	<lightning:layout>
+        	<lightning:layoutItem padding="around-medium" size="3">
+                <lightning:input value = "{!v.amountValue}" name="amount" label="Amount:" placeholder="Amount..."/>
+                <lightning:input type="date" name="amountDate" label="Date:" value="{!v.tdateValue}"/>
+        	</lightning:layoutItem>
+    	</lightning:layout>
+        <lightning:layout>
+            <lightning:layoutItem padding="around-medium" size="12">
+        		<lightning:textarea value="{!v.descriptionValue}" name="description" label="Description:" placeholder="type here..."/>
+            </lightning:layoutItem>
+            
+            
+        </lightning:layout>     
+        <lightning:layout>
+            <lightning:layoutItem padding="around-medium" size="12" >
+                <div class="slds-float_right">
+                <lightning:button variant="brand" label="Save" title="Save action" onclick="{! c.handleSaveClick }" />
+	            <lightning:button label="Cancel" title="Cancel action" onclick="{! c.handleCancelClick }" />
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+            
+        </lightning:card>
+    </div>
+</div>
+</aura:component>
